@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<allocation:CPS
+    xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:allocation="allocation"
+    xsi:schemaLocation="allocation Allocation.ecore"
+    broker="tcp://localhost:1883">
+  <hardwares/>
+  <topic name=""/>
+  <yakindusm/>
+</allocation:CPS>

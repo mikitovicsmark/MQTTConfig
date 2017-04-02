@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="Allocation" nsURI="allocation" nsPrefix="allocation">
+  <eClassifiers xsi:type="ecore:EClass" name="CPS">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="hardwares" upperBound="-1"
+        eType="#//Hardware" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="broker" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="topic" upperBound="-1"
+        eType="#//Topic" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="yakindusm" upperBound="-1"
+        eType="#//YakinduSM" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="YakinduSM">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="neweclass8" upperBound="-1"
+        eType="#//OutEvent" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="neweclass9" upperBound="-1"
+        eType="#//InEvent" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Hardware">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="instances" upperBound="-1"
+        eType="#//RunningInstance" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="RunningInstance">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="yakindu" lowerBound="1"
+        eType="#//YakinduSM"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="clientId" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="publisher" upperBound="-1"
+        eType="#//Publisher" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="subscriber" upperBound="-1"
+        eType="#//Subscriber" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Topic">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Publisher">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="topic" eType="#//Topic"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="outevent" eType="#//OutEvent"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Subscriber">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="topic" eType="#//Topic"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="inevent" eType="#//InEvent"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="OutEvent"/>
+  <eClassifiers xsi:type="ecore:EClass" name="InEvent"/>
+</ecore:EPackage>
