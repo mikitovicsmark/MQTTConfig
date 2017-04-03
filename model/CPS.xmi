@@ -10,15 +10,38 @@
       name="LightHardware">
     <instances
         yakindu="//@yakindusm.1"
-        clientId="LightClient"/>
+        clientId="LightClient">
+      <subscriber
+          topic="//@topic.0"
+          inevent="//@yakindusm.1/@inEvents.0"
+          message="//@topic.0/@messages.0"/>
+      <subscriber
+          topic="//@topic.0"
+          inevent="//@yakindusm.1/@inEvents.1"
+          message="//@topic.0/@messages.1"/>
+    </instances>
   </hardwares>
   <hardwares
       name="SwitchHardware">
     <instances
         yakindu="//@yakindusm.0"
-        clientId="SwitchClient"/>
+        clientId="SwitchClient">
+      <publisher
+          topic="//@topic.0"
+          outevent="//@yakindusm.0/@outEvents.1"
+          message="//@topic.0/@messages.1"/>
+      <publisher
+          topic="//@topic.0"
+          outevent="//@yakindusm.0/@outEvents.0"
+          message="//@topic.0/@messages.0"/>
+    </instances>
   </hardwares>
-  <topic name="LightSwitch"/>
+  <topic name="LightSwitch">
+    <messages
+        content="Turn On!"/>
+    <messages
+        content="Turn Off!"/>
+  </topic>
   <yakindusm
       timer="true"
       observer="true"
@@ -31,7 +54,7 @@
         name="onTurnOff"/>
     <inEvents
         interface="Controls"
-        name="turnOn"/>
+        name="switchTurnOn"/>
   </yakindusm>
   <yakindusm
       name="Light">
