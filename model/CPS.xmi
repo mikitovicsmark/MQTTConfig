@@ -7,23 +7,21 @@
     xsi:schemaLocation="allocation Allocation.ecore"
     broker="tcp://localhost:1883">
   <hardwares
-      name="LightRunner"/>
+      name="LightHardware">
+    <instances
+        yakindu="//@yakindusm.1"
+        clientId="LightClient"/>
+  </hardwares>
   <hardwares
-      name="SwitchRunner"/>
-  <topic name="SwitchTopic"
-      message="TurnOff"/>
-  <topic name="SwitchTopic"
-      message="TurnOn"/>
+      name="SwitchHardware">
+    <instances
+        yakindu="//@yakindusm.0"
+        clientId="SwitchClient"/>
+  </hardwares>
+  <topic name="LightSwitch"/>
   <yakindusm
-      name="Light">
-    <inEvents
-        interface="Controls"
-        name="turnOn"/>
-    <inEvents
-        interface="Controls"
-        name="turnOff"/>
-  </yakindusm>
-  <yakindusm
+      timer="true"
+      observer="true"
       name="SwitchSM">
     <outEvents
         interface="Publish"
@@ -34,5 +32,14 @@
     <inEvents
         interface="Controls"
         name="turnOn"/>
+  </yakindusm>
+  <yakindusm
+      name="Light">
+    <inEvents
+        interface="Controls"
+        name="turnOn"/>
+    <inEvents
+        interface="Controls"
+        name="turnOff"/>
   </yakindusm>
 </allocation:CPS>
