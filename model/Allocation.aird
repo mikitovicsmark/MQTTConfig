@@ -75,6 +75,10 @@
               <styles xmi:type="notation:FontStyle" xmi:id="_hKp8QRe-EeeB8rW_oiq9sg" fontColor="2697711" fontName="Segoe UI" fontHeight="8"/>
               <layoutConstraint xmi:type="notation:Location" xmi:id="_hKp8Qhe-EeeB8rW_oiq9sg"/>
             </children>
+            <children xmi:type="notation:Node" xmi:id="_DC8ygBhmEeeukOShuw1Pnw" type="3010" element="_DBTzwBhmEeeukOShuw1Pnw">
+              <styles xmi:type="notation:FontStyle" xmi:id="_DC8ygRhmEeeukOShuw1Pnw" fontColor="2697711" fontName="Segoe UI" fontHeight="8"/>
+              <layoutConstraint xmi:type="notation:Location" xmi:id="_DC8yghhmEeeukOShuw1Pnw"/>
+            </children>
             <styles xmi:type="notation:SortingStyle" xmi:id="_0KL7UgprEeeUvtoGVMgeqg"/>
             <styles xmi:type="notation:FilteringStyle" xmi:id="_0KL7UwprEeeUvtoGVMgeqg"/>
           </children>
@@ -412,7 +416,7 @@
       <arrangeConstraints>KEEP_LOCATION</arrangeConstraints>
       <arrangeConstraints>KEEP_SIZE</arrangeConstraints>
       <arrangeConstraints>KEEP_RATIO</arrangeConstraints>
-      <ownedStyle xmi:type="diagram:FlatContainerStyle" xmi:id="_iW3QsBe-EeeB8rW_oiq9sg" borderSize="1" borderSizeComputationExpression="1" backgroundStyle="Liquid" foregroundColor="255,252,216">
+      <ownedStyle xmi:type="diagram:FlatContainerStyle" xmi:id="_GjObUBhmEeeukOShuw1Pnw" borderSize="1" borderSizeComputationExpression="1" backgroundStyle="Liquid" foregroundColor="255,252,216">
         <description xmi:type="style:FlatContainerStyleDescription" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']/@style"/>
       </ownedStyle>
       <actualMapping xmi:type="description_1:ContainerMapping" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']"/>
@@ -428,6 +432,14 @@
         <target xmi:type="ecore:EAttribute" href="Allocation.ecore#//YakinduSM/observer"/>
         <semanticElements xmi:type="ecore:EAttribute" href="Allocation.ecore#//YakinduSM/observer"/>
         <ownedStyle xmi:type="diagram:BundledImage" xmi:id="_iXBBsBe-EeeB8rW_oiq9sg" labelAlignment="LEFT">
+          <description xmi:type="style:BundledImageDescription" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']/@subNodeMappings[name='EC%20EAttribute']/@style"/>
+        </ownedStyle>
+        <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']/@subNodeMappings[name='EC%20EAttribute']"/>
+      </ownedElements>
+      <ownedElements xmi:type="diagram:DNodeListElement" xmi:id="_DBTzwBhmEeeukOShuw1Pnw" name="name : EString" tooltipText="">
+        <target xmi:type="ecore:EAttribute" href="Allocation.ecore#//YakinduSM/name"/>
+        <semanticElements xmi:type="ecore:EAttribute" href="Allocation.ecore#//YakinduSM/name"/>
+        <ownedStyle xmi:type="diagram:BundledImage" xmi:id="_GjQQgBhmEeeukOShuw1Pnw" labelAlignment="LEFT">
           <description xmi:type="style:BundledImageDescription" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']/@subNodeMappings[name='EC%20EAttribute']/@style"/>
         </ownedStyle>
         <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']/@subNodeMappings[name='EC%20EAttribute']"/>

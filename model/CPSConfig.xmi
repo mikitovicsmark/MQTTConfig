@@ -6,7 +6,33 @@
     xmlns:allocation="allocation"
     xsi:schemaLocation="allocation Allocation.ecore"
     broker="tcp://localhost:1883">
-  <hardwares/>
-  <topic name=""/>
-  <yakindusm/>
+  <hardwares
+      name="LightRunner"/>
+  <hardwares
+      name="SwitchRunner"/>
+  <topic name="SwitchTopic"
+      message="TurnOff"/>
+  <topic name="SwitchTopic"
+      message="TurnOn"/>
+  <yakindusm
+      name="Light">
+    <inEvents
+        interface="Controls"
+        name="turnOn"/>
+    <inEvents
+        interface="Controls"
+        name="turnOff"/>
+  </yakindusm>
+  <yakindusm
+      name="SwitchSM">
+    <outEvents
+        interface="Publish"
+        name="onTurnOn"/>
+    <outEvents
+        interface="Publish"
+        name="onTurnOff"/>
+    <inEvents
+        interface="Controls"
+        name="turnOn"/>
+  </yakindusm>
 </allocation:CPS>
