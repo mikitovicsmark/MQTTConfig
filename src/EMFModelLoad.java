@@ -23,7 +23,7 @@ public class EMFModelLoad {
 
                 // Get the resource
                 Resource resource = resSet.getResource(URI
-                                .createURI("model/CPSConfig.xmi"), true);
+                                .createURI("model/CPS.xmi"), true);
                 // Get the first model element and cast it to the right type, in my
                 // example everything is hierarchical included in this first node
                 CPS cps = (CPS) resource.getContents().get(0);

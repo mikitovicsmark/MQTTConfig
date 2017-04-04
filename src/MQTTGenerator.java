@@ -58,10 +58,11 @@ public class MQTTGenerator {
 				if (runningInstance.getSubscriber().size() > 0) {
 					out.println(indent(2) + "try {\n");
 					 for (Iterator<Subscriber> subscriberIterator = runningInstance.getSubscriber().iterator(); subscriberIterator.hasNext();) {
+						    Subscriber subscriber = subscriberIterator.next();
 							out.println(indent(3) + "MQTT" + smName + " client" + clientId + " = new MQTT" + smName + "(broker, " + runningInstance.getClientId() + ", persistence);");
 							out.println(indent(3) + "client" + clientId + ".init();");
+							out.println(indent(3) + "client" + clientId + ".subscribe(" + subscriber.getTopic().getName() + ", qos);");
 							clientId++;
-							subscriberIterator.next();
 					 }
 					 out.println(indent(2) + " } catch(MqttException me) {");
 					 out.println(indent(2) + "System.out.println(\"msg \"+me.getMessage());");

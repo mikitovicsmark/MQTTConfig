@@ -38,9 +38,9 @@
   </hardwares>
   <topic name="LightSwitch">
     <messages
-        content="Turn On!"/>
+        content="TurnOn!"/>
     <messages
-        content="Turn Off!"/>
+        content="TurnOff!"/>
   </topic>
   <yakindusm
       timer="true"
