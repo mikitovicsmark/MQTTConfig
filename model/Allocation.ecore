@@ -29,10 +29,10 @@
         eType="#//YakinduSM"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="clientId" lowerBound="1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="publisher" upperBound="-1"
-        eType="#//Publisher" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="subscriber" upperBound="-1"
-        eType="#//Subscriber" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="publisher" eType="#//Publisher"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="subscriber" eType="#//Subscriber"
+        containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Topic">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
@@ -40,22 +40,24 @@
         eType="#//Message" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Publisher">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="topic" eType="#//Topic"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="outevent" eType="#//OutEvent"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="message" eType="#//Message"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="outevent" upperBound="-1"
+        eType="#//OutEvent"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Subscriber">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="topic" eType="#//Topic"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="inevent" eType="#//InEvent"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="message" eType="#//Message"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="inevent" upperBound="-1"
+        eType="#//InEvent"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="OutEvent">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="interface" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="topic" eType="#//Topic"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="message" eType="#//Message"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="InEvent">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="interface" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="topic" eType="#//Topic"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="message" eType="#//Message"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Message">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="content" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>

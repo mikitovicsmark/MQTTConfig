@@ -4,12 +4,16 @@ import java.io.FileOutputStream;
 import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
+import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
 
 import Allocation.CPS;
 import Allocation.Hardware;
+import Allocation.InEvent;
 import Allocation.RunningInstance;
 import Allocation.Subscriber;
+import Allocation.Topic;
 import Allocation.YakinduSM;
 
 public class MQTTGenerator {
@@ -36,13 +40,15 @@ public class MQTTGenerator {
         		YakinduSM yakinduSM = runningInstance.getYakindu();
         		String smName = yakinduSM.getName();
 				out = new PrintWriter(new OutputStreamWriter(new BufferedOutputStream(new FileOutputStream(smName + "Runner.txt")), "UTF-8"));
-				if (runningInstance.getSubscriber().size() > 0) {
+				
+				Subscriber subscriber = runningInstance.getSubscriber();
+				if (subscriber != null) {
 					out.println("import org.eclipse.paho.client.mqttv3.MqttMessage;");
 				}
 				out.println("import org.eclipse.paho.client.mqttv3.persist.MemoryPersistence;\n");
 				out.println("public class " + smName + "Runner {\n");
 				out.println(indent(1) + "public static void main(String[] args) throws InterruptedException {\n");
-				if (runningInstance.getSubscriber().size() > 0) {
+				if (subscriber != null) {
 					out.println(indent(2) + "int qos             = 2;");
 				}
 				out.println(indent(2) + "String broker       = \"" + broker + "\"");
@@ -50,26 +56,34 @@ public class MQTTGenerator {
 				out.println(indent(2) + "MemoryPersistence persistence = new MemoryPersistence();\n");
 				
 				int clientId = 1;
-				if (runningInstance.getPublisher().size() > 0) {
+				if (runningInstance.getPublisher() != null) {
 					out.println(indent(2) + "MQTT" + smName + " client" + clientId + " = new MQTT" + smName + "(broker, " + runningInstance.getClientId() + ", persistence);");
 					out.println(indent(2) + "client" + clientId + ".init();");
 					clientId++;
 				}
-				if (runningInstance.getSubscriber().size() > 0) {
-					out.println(indent(2) + "try {\n");
-					 for (Iterator<Subscriber> subscriberIterator = runningInstance.getSubscriber().iterator(); subscriberIterator.hasNext();) {
-						    Subscriber subscriber = subscriberIterator.next();
-							out.println(indent(3) + "MQTT" + smName + " client" + clientId + " = new MQTT" + smName + "(broker, " + runningInstance.getClientId() + ", persistence);");
-							out.println(indent(3) + "client" + clientId + ".init();");
-							out.println(indent(3) + "client" + clientId + ".subscribe(" + subscriber.getTopic().getName() + ", qos);");
-							clientId++;
+				if (subscriber != null) {
+					List<Topic> topics = new ArrayList<>();
+					
+					out.println(indent(2) + "try {");
+					 for (Iterator<InEvent> inEventIterator = subscriber.getInevent().iterator(); inEventIterator.hasNext();) {
+						 	InEvent inEvent = inEventIterator.next();
+						 	Topic topic = inEvent.getTopic();
+						 	if (!topics.contains(topic)) {
+						 		topics.add(topic);
+						 	}
 					 }
-					 out.println(indent(2) + " } catch(MqttException me) {");
-					 out.println(indent(2) + "System.out.println(\"msg \"+me.getMessage());");
-					 out.println(indent(2) + "System.out.println(\"loc \"+me.getLocalizedMessage());");
-					 out.println(indent(2) + "System.out.println(\"cause \"+me.getCause());");
-					 out.println(indent(2) + "System.out.println(\"excep \"+me);");
-					 out.println(indent(2) + "me.printStackTrace();");
+					 
+					 for(Topic topic : topics) {
+						 out.println(indent(3) + "client" + clientId + ".subscribe(" + topic.getName() + ", qos);");
+					 }
+					 out.println(indent(3) + "MQTT" + smName + " client" + clientId + " = new MQTT" + smName + "(broker, " + runningInstance.getClientId() + ", persistence);");
+					 out.println(indent(3) + "client" + clientId + ".init();");
+					 out.println(indent(2) + "} catch(MqttException me) {");
+					 out.println(indent(3) + "System.out.println(\"msg \"+me.getMessage());");
+					 out.println(indent(3) + "System.out.println(\"loc \"+me.getLocalizedMessage());");
+					 out.println(indent(3) + "System.out.println(\"cause \"+me.getCause());");
+					 out.println(indent(3) + "System.out.println(\"excep \"+me);");
+					 out.println(indent(3) + "me.printStackTrace();");
 					 out.println(indent(2) + "}");
 				}
 				out.println(indent(1) + "}");

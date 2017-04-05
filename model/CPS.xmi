@@ -12,13 +12,7 @@
         yakindu="//@yakindusm.1"
         clientId="LightClient">
       <subscriber
-          topic="//@topic.0"
-          inevent="//@yakindusm.1/@inEvents.0"
-          message="//@topic.0/@messages.0"/>
-      <subscriber
-          topic="//@topic.0"
-          inevent="//@yakindusm.1/@inEvents.1"
-          message="//@topic.0/@messages.1"/>
+          inevent="//@yakindusm.1/@inEvents.0 //@yakindusm.1/@inEvents.1"/>
     </instances>
   </hardwares>
   <hardwares
@@ -27,13 +21,7 @@
         yakindu="//@yakindusm.0"
         clientId="SwitchClient">
       <publisher
-          topic="//@topic.0"
-          outevent="//@yakindusm.0/@outEvents.1"
-          message="//@topic.0/@messages.1"/>
-      <publisher
-          topic="//@topic.0"
-          outevent="//@yakindusm.0/@outEvents.0"
-          message="//@topic.0/@messages.0"/>
+          outevent="//@yakindusm.0/@outEvents.0 //@yakindusm.0/@outEvents.1"/>
     </instances>
   </hardwares>
   <topic name="LightSwitch">
@@ -48,10 +36,14 @@
       name="SwitchSM">
     <outEvents
         interface="Publish"
-        name="onTurnOn"/>
+        name="onTurnOn"
+        topic="//@topic.0"
+        message="//@topic.0/@messages.0"/>
     <outEvents
         interface="Publish"
-        name="onTurnOff"/>
+        name="onTurnOff"
+        topic="//@topic.0"
+        message="//@topic.0/@messages.1"/>
     <inEvents
         interface="Controls"
         name="switchTurnOn"/>
@@ -60,9 +52,13 @@
       name="Light">
     <inEvents
         interface="Controls"
-        name="turnOn"/>
+        name="turnOn"
+        topic="//@topic.0"
+        message="//@topic.0/@messages.0"/>
     <inEvents
         interface="Controls"
-        name="turnOff"/>
+        name="turnOff"
+        topic="//@topic.0"
+        message="//@topic.0/@messages.1"/>
   </yakindusm>
 </allocation:CPS>
