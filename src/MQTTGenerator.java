@@ -124,13 +124,10 @@ public class MQTTGenerator {
         		
 				 for (Iterator<InEvent> inEventIterator = yakindu.getInEvents().iterator(); inEventIterator.hasNext();) {
 					 	InEvent inEvent = inEventIterator.next();
-					 	Topic topic = inEvent.getTopic();
-					 	if (topic == null) {
-					 		out.println("	public void " + inEvent.getName() + "() {\r\n" + 
-					 				"		statemachine.getSCI" + inEvent.getInterface() + "().raise" + inEvent.getName() + "();\r\n" + 
-					 				"		statemachine.runCycle();\r\n" + 
-					 				"	}");
-					 	}
+				 		out.println("	public void " + inEvent.getName() + "() {\r\n" + 
+				 				"		statemachine.getSCI" + inEvent.getInterface() + "().raise" + inEvent.getName() + "();\r\n" + 
+				 				"		statemachine.runCycle();\r\n" + 
+				 				"	}");
 				 }
         		
         		out.println(indent(1) + "public void connectionLost(Throwable arg0) {\r\n" + 
@@ -142,7 +139,23 @@ public class MQTTGenerator {
         				indent(1) + "}\r\n" + 
         				"\r\n" + 
         				indent(1) + "public void messageArrived(String topic, MqttMessage msg) throws Exception {\r\n" + 
-        				indent(2) + "System.out.println(\"Got message: Topic: \" + topic + \"\\n\\tMessage: \" + new String(msg.getPayload()));\r\n" + 
+        				indent(2) + "System.out.println(\"Got message: Topic: \" + topic + \"\\n\\tMessage: \" + new String(msg.getPayload()));\r\n"
+        				);
+        		
+				 for (Iterator<InEvent> inEventIterator = yakindu.getInEvents().iterator(); inEventIterator.hasNext();) {
+					 	InEvent inEvent = inEventIterator.next();
+					 	if (inEvent.getMessage() != null && inEvent.getTopic() != null) {
+						 	String msg = inEvent.getMessage().getContent();
+						 	String topic = inEvent.getTopic().getName();
+						 	if (topic != null && msg != null) {
+					 		out.println(indent(2) + "if(msg.toString() == \"" + msg + "\" && topic == \"" + topic + "\") {\n" +
+					 				indent(3) + inEvent.getName() + "();\n" +
+					 				indent(2) + "}");
+						 	}
+					 	}
+				 }
+        		
+        		out.println(
         				indent(1) + "}\r\n" + 
         				"\r\n" + 
         				indent(1) + "public void subscribe(String topic, int qos) throws MqttException {\r\n" + 
