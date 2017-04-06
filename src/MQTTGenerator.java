@@ -100,8 +100,8 @@ public class MQTTGenerator {
 						 	Topic topic = outEvent.getTopic();
 						 	out.println(indent(2) + "statemachine.getSCI" + outEvent.getInterface() + "().getListeners().add(new SCI" + outEvent.getInterface() + "Listener() {");
 						 	out.println("				public void on" + outEvent.getName() + "Raised() {\r\n" + 
-						 			"					String topic = \"" + topic + "\";\r\n" + 
-						 			"					String content = \"" + outEvent.getMessage() + "\";\r\n" + 
+						 			"					String topic = \"" + topic.getName() + "\";\r\n" + 
+						 			"					String content = \"" + outEvent.getMessage().getContent() + "\";\r\n" + 
 						 			"					MqttMessage message = new MqttMessage(content.getBytes());\r\n" + 
 						 			"					try {\r\n" + 
 						 			"						myClient.publish(topic, message);\r\n" + 
