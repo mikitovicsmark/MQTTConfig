@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.2/notation" xmlns:sgraph="http://www.yakindu.org/sct/sgraph/2.0.0">
-  <sgraph:Statechart xmi:id="_mSPccB3lEeeBDIA30XLAHg" specification="interface Movement:&#xA;&#x9;in event detect&#xA;interface Publisher:&#xA;&#x9;out event detect" name="MovementDetector">
+  <sgraph:Statechart xmi:id="_mSPccB3lEeeBDIA30XLAHg" specification="interface Movement:&#xA;&#x9;in event detect&#xA;interface Publisher:&#xA;&#x9;out event detect&#xA;&#x9;out event stop" name="MovementDetector">
     <regions xmi:id="_mSsIYx3lEeeBDIA30XLAHg" name="main region">
       <vertices xsi:type="sgraph:Entry" xmi:id="_mS1SVh3lEeeBDIA30XLAHg">
         <outgoingTransitions xmi:id="_mTI0Vh3lEeeBDIA30XLAHg" target="_mS_DWx3lEeeBDIA30XLAHg"/>
@@ -9,7 +9,7 @@
         <outgoingTransitions xmi:id="_MQK6UB3oEeeBDIA30XLAHg" specification="Movement.detect / raise Publisher.detect" target="_m1u5IB3nEeeBDIA30XLAHg"/>
       </vertices>
       <vertices xsi:type="sgraph:State" xmi:id="_m1u5IB3nEeeBDIA30XLAHg" name="Detected" incomingTransitions="_MQK6UB3oEeeBDIA30XLAHg _smd2wB3pEeeBDIA30XLAHg">
-        <outgoingTransitions xmi:id="_M00fgB3oEeeBDIA30XLAHg" specification="after 10 s " target="_mS_DWx3lEeeBDIA30XLAHg"/>
+        <outgoingTransitions xmi:id="_M00fgB3oEeeBDIA30XLAHg" specification="after 10 s / raise Publisher.stop " target="_mS_DWx3lEeeBDIA30XLAHg"/>
         <outgoingTransitions xmi:id="_smd2wB3pEeeBDIA30XLAHg" specification="Movement.detect / raise Publisher.detect" target="_m1u5IB3nEeeBDIA30XLAHg"/>
       </vertices>
     </regions>
@@ -105,7 +105,7 @@
     <edges xmi:id="_M01toB3oEeeBDIA30XLAHg" type="Transition" element="_M00fgB3oEeeBDIA30XLAHg" source="_m1wuUB3nEeeBDIA30XLAHg" target="_mS_DXh3lEeeBDIA30XLAHg">
       <children xsi:type="notation:DecorationNode" xmi:id="_M01tpB3oEeeBDIA30XLAHg" type="TransitionExpression">
         <styles xsi:type="notation:ShapeStyle" xmi:id="_M01tpR3oEeeBDIA30XLAHg"/>
-        <layoutConstraint xsi:type="notation:Location" xmi:id="_M01tph3oEeeBDIA30XLAHg" y="10"/>
+        <layoutConstraint xsi:type="notation:Location" xmi:id="_M01tph3oEeeBDIA30XLAHg" x="-1" y="-40"/>
       </children>
       <styles xsi:type="notation:ConnectorStyle" xmi:id="_M01toR3oEeeBDIA30XLAHg" lineColor="4210752"/>
       <styles xsi:type="notation:FontStyle" xmi:id="_M01tox3oEeeBDIA30XLAHg" fontName="Verdana"/>
