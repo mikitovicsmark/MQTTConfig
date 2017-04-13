@@ -1,0 +1,68 @@
+GeneratorModel for yakindu::java {
+
+	statechart MovementDetector {
+
+		feature Outlet {
+			targetProject = "YakinduAllocationModel"
+			targetFolder = "src-gen"
+			libraryTargetFolder = "src"
+		}
+		feature GeneralFeatures {
+			TimerService = true
+			RuntimeService = true
+			InterfaceObserverSupport = true
+		}
+	}
+
+	statechart Light {
+
+		feature Outlet {
+			targetProject = "YakinduAllocationModel"
+			targetFolder = "src-gen"
+			libraryTargetFolder = "src"
+		}
+		feature GeneralFeatures {
+			RuntimeService = true
+		}
+	}
+
+	statechart Sprinkler {
+
+		feature Outlet {
+			targetProject = "YakinduAllocationModel"
+			targetFolder = "src-gen"
+			libraryTargetFolder = "src"
+		}
+		feature GeneralFeatures {
+			RuntimeService = true
+			TimerService = true
+		}
+	}
+
+	statechart LightSensor {
+
+		feature Outlet {
+			targetProject = "YakinduAllocationModel"
+			targetFolder = "src-gen"
+			libraryTargetFolder = "src"
+		}
+		feature GeneralFeatures {
+			RuntimeService = true
+			InterfaceObserverSupport = true
+		}
+	}
+
+	statechart ControlPanel {
+
+		feature Outlet {
+			targetProject = "YakinduAllocationModel"
+			targetFolder = "src-gen"
+			libraryTargetFolder = "src"
+		}
+		feature GeneralFeatures {
+			TimerService = true
+			RuntimeService = true
+			InterfaceObserverSupport = true
+		}
+	}
+}
