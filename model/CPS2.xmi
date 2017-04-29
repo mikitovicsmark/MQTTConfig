@@ -9,50 +9,48 @@
   <hardwares
       name="LightHardware">
     <instances
-        yakindu="//@yakindusm.1"
+        yakindu="//@yakindusm.0"
         clientId="LightClient">
       <subscriber
-          inevent="//@yakindusm.1/@inEvents.0 //@yakindusm.1/@inEvents.1"/>
-    </instances>
-  </hardwares>
-  <hardwares
-      name="SwitchHardware">
-    <instances
-        yakindu="//@yakindusm.0"
-        clientId="SwitchClient">
-      <publisher
-          outevent="//@yakindusm.0/@outEvents.0 //@yakindusm.0/@outEvents.1"/>
+          inevent="//@yakindusm.0/@inEvents.2 //@yakindusm.0/@inEvents.3 //@yakindusm.0/@inEvents.4 //@yakindusm.0/@inEvents.5 //@yakindusm.0/@inEvents.0 //@yakindusm.0/@inEvents.1"/>
     </instances>
   </hardwares>
   <hardwares
       name="LightSensorHardware">
     <instances
-        yakindu="//@yakindusm.2"
+        yakindu="//@yakindusm.1"
         clientId="LightSensorClient">
       <publisher
-          outevent="//@yakindusm.2/@outEvents.0 //@yakindusm.2/@outEvents.1"/>
+          outevent="//@yakindusm.1/@outEvents.0 //@yakindusm.1/@outEvents.1"/>
     </instances>
   </hardwares>
   <hardwares
       name="MovementDetectorHardware">
     <instances
-        yakindu="//@yakindusm.3"
+        yakindu="//@yakindusm.2"
         clientId="MovementDetectorClient">
       <publisher
-          outevent="//@yakindusm.3/@outEvents.0 //@yakindusm.3/@outEvents.1"/>
+          outevent="//@yakindusm.2/@outEvents.0 //@yakindusm.2/@outEvents.1"/>
     </instances>
   </hardwares>
   <hardwares
       name="ControlPanelHardware">
     <instances
-        clientId="ControlPanelClient"/>
+        yakindu="//@yakindusm.3"
+        clientId="ControlPanelClient">
+      <publisher
+          outevent="//@yakindusm.3/@outEvents.0 //@yakindusm.3/@outEvents.1 //@yakindusm.3/@outEvents.2 //@yakindusm.3/@outEvents.3"/>
+    </instances>
   </hardwares>
-  <topic name="LightSwitch">
-    <messages
-        content="TurnOn!"/>
-    <messages
-        content="TurnOff!"/>
-  </topic>
+  <hardwares
+      name="SprinklerHardware">
+    <instances
+        yakindu="//@yakindusm.4"
+        clientId="SprinklerClient">
+      <subscriber
+          inevent="//@yakindusm.4/@inEvents.0 //@yakindusm.4/@inEvents.1"/>
+    </instances>
+  </hardwares>
   <topic name="Light">
     <messages
         content="dark"/>
@@ -76,35 +74,37 @@
         content="switchLightOn"/>
   </topic>
   <yakindusm
-      timer="true"
-      observer="true"
-      name="SwitchSM">
-    <outEvents
-        interface="Publish"
-        name="onTurnOn"
-        topic="//@topic.0"
-        message="//@topic.0/@messages.0"/>
-    <outEvents
-        interface="Publish"
-        name="onTurnOff"
-        topic="//@topic.0"
-        message="//@topic.0/@messages.1"/>
-    <inEvents
-        interface="Controls"
-        name="switchTurnOn"/>
-  </yakindusm>
-  <yakindusm
       name="Light">
     <inEvents
         interface="Controls"
-        name="turnOn"
+        name="switchOn"
+        topic="//@topic.2"
+        message="//@topic.2/@messages.3"/>
+    <inEvents
+        interface="Controls"
+        name="switchOff"
+        topic="//@topic.2"
+        message="//@topic.2/@messages.2"/>
+    <inEvents
+        interface="Controls"
+        name="dark"
         topic="//@topic.0"
         message="//@topic.0/@messages.0"/>
     <inEvents
         interface="Controls"
-        name="turnOff"
+        name="bright"
         topic="//@topic.0"
         message="//@topic.0/@messages.1"/>
+    <inEvents
+        interface="Controls"
+        name="movementOn"
+        topic="//@topic.1"
+        message="//@topic.1/@messages.0"/>
+    <inEvents
+        interface="Controls"
+        name="movementOff"
+        topic="//@topic.1"
+        message="//@topic.1/@messages.1"/>
   </yakindusm>
   <yakindusm
       observer="true"
@@ -112,19 +112,19 @@
     <outEvents
         interface="Publisher"
         name="dark"
-        topic="//@topic.1"
-        message="//@topic.1/@messages.0"/>
+        topic="//@topic.0"
+        message="//@topic.0/@messages.0"/>
     <outEvents
         interface="Publisher"
         name="bright"
-        topic="//@topic.1"
-        message="//@topic.1/@messages.1"/>
+        topic="//@topic.0"
+        message="//@topic.0/@messages.1"/>
     <inEvents
         interface="Controls"
-        name="dark"/>
+        name="onDark"/>
     <inEvents
         interface="Controls"
-        name="bright"/>
+        name="onBright"/>
   </yakindusm>
   <yakindusm
       timer="true"
@@ -133,16 +133,16 @@
     <outEvents
         interface="Publisher"
         name="detect"
-        topic="//@topic.2"
-        message="//@topic.2/@messages.0"/>
+        topic="//@topic.1"
+        message="//@topic.1/@messages.0"/>
     <outEvents
         interface="Publisher"
         name="stop"
-        topic="//@topic.2"
-        message="//@topic.2/@messages.1"/>
+        topic="//@topic.1"
+        message="//@topic.1/@messages.1"/>
     <inEvents
         interface="Controls"
-        name="detect"/>
+        name="onDetect"/>
   </yakindusm>
   <yakindusm
       timer="true"
@@ -151,28 +151,42 @@
     <outEvents
         interface="Publisher"
         name="switchSprinklerOff"
-        topic="//@topic.3"
-        message="//@topic.3/@messages.0"/>
+        topic="//@topic.2"
+        message="//@topic.2/@messages.0"/>
     <outEvents
         interface="Publisher"
         name="switchSprinklerOn"
-        topic="//@topic.3"
-        message="//@topic.3/@messages.1"/>
+        topic="//@topic.2"
+        message="//@topic.2/@messages.1"/>
     <outEvents
         interface="Publisher"
         name="switchLightOff"
-        topic="//@topic.3"
-        message="//@topic.3/@messages.2"/>
+        topic="//@topic.2"
+        message="//@topic.2/@messages.2"/>
     <outEvents
         interface="Publisher"
         name="switchLightOn"
-        topic="//@topic.3"
-        message="//@topic.3/@messages.3"/>
+        topic="//@topic.2"
+        message="//@topic.2/@messages.3"/>
     <inEvents
         interface="Controls"
         name="switchSprinkler"/>
     <inEvents
         interface="Controls"
         name="switchLight"/>
+  </yakindusm>
+  <yakindusm
+      timer="true"
+      name="Sprinkler">
+    <inEvents
+        interface="Controls"
+        name="turnOn"
+        topic="//@topic.2"
+        message="//@topic.2/@messages.1"/>
+    <inEvents
+        interface="Controls"
+        name="turnOff"
+        topic="//@topic.2"
+        message="//@topic.2/@messages.0"/>
   </yakindusm>
 </allocation:CPS>

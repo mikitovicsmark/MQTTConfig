@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.2/notation" xmlns:sgraph="http://www.yakindu.org/sct/sgraph/2.0.0">
-  <sgraph:Statechart xmi:id="_wcn-EB3rEeeBDIA30XLAHg" specification="interface Controls:&#xA;&#x9;in event dark&#xA;&#x9;in event bright&#xA;interface Publisher:&#xA;&#x9;out event dark&#xA;&#x9;out event bright" name="LightSensor">
+  <sgraph:Statechart xmi:id="_wcn-EB3rEeeBDIA30XLAHg" specification="interface Controls:&#xA;&#x9;in event onDark&#xA;&#x9;in event onBright&#xA;interface Publisher:&#xA;&#x9;out event dark&#xA;&#x9;out event bright" name="LightSensor">
     <regions xmi:id="_wcn-FR3rEeeBDIA30XLAHg" name="main region">
       <vertices xsi:type="sgraph:Entry" xmi:id="_wcn-Hx3rEeeBDIA30XLAHg">
         <outgoingTransitions xmi:id="_wcn-Ox3rEeeBDIA30XLAHg" target="_wcn-Kx3rEeeBDIA30XLAHg"/>
       </vertices>
       <vertices xsi:type="sgraph:State" xmi:id="_wcn-Kx3rEeeBDIA30XLAHg" name="Bright" incomingTransitions="_wcn-Ox3rEeeBDIA30XLAHg _EAYRkB3sEeeBDIA30XLAHg">
-        <outgoingTransitions xmi:id="_7xVzkB3rEeeBDIA30XLAHg" specification="Controls.dark / raise Publisher.dark" target="_5cIPvR3rEeeBDIA30XLAHg"/>
+        <outgoingTransitions xmi:id="_7xVzkB3rEeeBDIA30XLAHg" specification="Controls.onDark / raise Publisher.dark" target="_5cIPvR3rEeeBDIA30XLAHg"/>
       </vertices>
       <vertices xsi:type="sgraph:State" xmi:id="_5cIPvR3rEeeBDIA30XLAHg" name="Dark" incomingTransitions="_7xVzkB3rEeeBDIA30XLAHg">
-        <outgoingTransitions xmi:id="_EAYRkB3sEeeBDIA30XLAHg" specification="Controls.bright / raise Publisher.bright" target="_wcn-Kx3rEeeBDIA30XLAHg"/>
+        <outgoingTransitions xmi:id="_EAYRkB3sEeeBDIA30XLAHg" specification="Controls.onBright / raise Publisher.bright" target="_wcn-Kx3rEeeBDIA30XLAHg"/>
       </vertices>
     </regions>
   </sgraph:Statechart>
