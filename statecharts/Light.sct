@@ -94,7 +94,7 @@
         <layoutConstraint xsi:type="notation:Bounds" xmi:id="_yBbbIR_MEeevX6ZO0nRwcA"/>
       </children>
       <styles xsi:type="notation:ShapeStyle" xmi:id="_yBaNBh_MEeevX6ZO0nRwcA" fontName="Verdana" fillColor="15790320" lineColor="12632256"/>
-      <layoutConstraint xsi:type="notation:Bounds" xmi:id="_yBbbIh_MEeevX6ZO0nRwcA" x="424" y="8" width="1096" height="800"/>
+      <layoutConstraint xsi:type="notation:Bounds" xmi:id="_yBbbIh_MEeevX6ZO0nRwcA" x="424" y="8" width="1208" height="664"/>
     </children>
     <children xsi:type="notation:Shape" xmi:id="_yBcpSR_MEeevX6ZO0nRwcA" type="StatechartText" fontName="Verdana" lineColor="4210752">
       <children xsi:type="notation:DecorationNode" xmi:id="_yBdQUB_MEeevX6ZO0nRwcA" type="StatechartName">
@@ -193,7 +193,7 @@
     <edges xmi:id="_6NPUEB_OEeevX6ZO0nRwcA" type="Transition" element="_6NOF8B_OEeevX6ZO0nRwcA" source="_1-sQAR_OEeevX6ZO0nRwcA" target="_0WOIQR_MEeevX6ZO0nRwcA">
       <children xsi:type="notation:DecorationNode" xmi:id="_6NPUFB_OEeevX6ZO0nRwcA" type="TransitionExpression">
         <styles xsi:type="notation:ShapeStyle" xmi:id="_6NPUFR_OEeevX6ZO0nRwcA"/>
-        <layoutConstraint xsi:type="notation:Location" xmi:id="_6NPUFh_OEeevX6ZO0nRwcA" x="-62" y="-24"/>
+        <layoutConstraint xsi:type="notation:Location" xmi:id="_6NPUFh_OEeevX6ZO0nRwcA" x="1" y="-72"/>
       </children>
       <styles xsi:type="notation:ConnectorStyle" xmi:id="_6NPUER_OEeevX6ZO0nRwcA" lineColor="4210752"/>
       <styles xsi:type="notation:FontStyle" xmi:id="_6NPUEx_OEeevX6ZO0nRwcA" fontName="Verdana"/>
@@ -214,7 +214,7 @@
     <edges xmi:id="_CKawkB_QEeevX6ZO0nRwcA" type="Transition" element="_CKRmoB_QEeevX6ZO0nRwcA" source="_0WOIQR_MEeevX6ZO0nRwcA" target="_0WOIQR_MEeevX6ZO0nRwcA">
       <children xsi:type="notation:DecorationNode" xmi:id="_CKawlB_QEeevX6ZO0nRwcA" type="TransitionExpression">
         <styles xsi:type="notation:ShapeStyle" xmi:id="_CKawlR_QEeevX6ZO0nRwcA"/>
-        <layoutConstraint xsi:type="notation:Location" xmi:id="_CKawlh_QEeevX6ZO0nRwcA" x="-4" y="-96"/>
+        <layoutConstraint xsi:type="notation:Location" xmi:id="_CKawlh_QEeevX6ZO0nRwcA" x="-64" y="-19"/>
       </children>
       <styles xsi:type="notation:ConnectorStyle" xmi:id="_CKawkR_QEeevX6ZO0nRwcA" lineColor="4210752"/>
       <styles xsi:type="notation:FontStyle" xmi:id="_CKawkx_QEeevX6ZO0nRwcA" fontName="Verdana"/>
