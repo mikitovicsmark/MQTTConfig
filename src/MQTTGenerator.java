@@ -24,9 +24,13 @@ public class MQTTGenerator {
                 EMFModelLoad loader = new EMFModelLoad();
                 CPS cps = loader.load();
 
-                for (Iterator<Hardware> hardwareIterator = cps.getHardwares().iterator(); hardwareIterator.hasNext();) {
+                for (Iterator<Hardware> hardwareIterator = 
+                		cps.getHardwares().iterator(); hardwareIterator.hasNext();) {
+ 
                         Hardware hw = hardwareIterator.next();
-                        for (Iterator<RunningInstance> instanceIterator = hw.getInstances().iterator(); instanceIterator.hasNext();) {
+                        for (Iterator<RunningInstance> instanceIterator = 
+                        		hw.getInstances().iterator(); instanceIterator.hasNext();) {
+                        	
 	                        RunningInstance runningInstance = instanceIterator.next();
 	                        generateRunner(runningInstance, cps.getBroker());
 	                        generateMQTTClass(runningInstance.getYakindu());
@@ -66,7 +70,14 @@ public class MQTTGenerator {
         		if (yakindu.isTimer()) {
         			out.println("import org.yakindu.scr.TimerService;");
         		}
-        		out.println("import org.yakindu.scr." + yakindu.getName().toLowerCase() + yakindu.getName() + "Statemachine;\n" );
+        		out.println("import org.yakindu.scr." + yakindu.getName().toLowerCase() + "." + yakindu.getName() + "Statemachine;" );
+
+        		if (yakindu.isObserver()) {
+        			out.println("\nimport org.yakindu.scr." + yakindu.getName().toLowerCase() + ".I" + yakindu.getName() + "Statemachine" + ".SCIPublisherListener;\n");
+        		} else {
+        			out.println("\n");
+        		}
+
         		out.println("public class MQTT" + yakindu.getName() + " implements MqttCallback{\r\n" + 
         				indent(1) + yakindu.getName() + "Statemachine statemachine;\r\n" + 
         				indent(1) + "MqttClient myClient;\r\n" + 
@@ -95,11 +106,15 @@ public class MQTTGenerator {
         			out.println("statemachine.setTimer(new TimerService());\r\n");
         		}
         		if(yakindu.isObserver()) {
+        			boolean firstIteration = true;
 	   				 for (Iterator<OutEvent> outEventIterator = yakindu.getOutEvents().iterator(); outEventIterator.hasNext();) {
 						 	OutEvent outEvent = outEventIterator.next();
 						 	Topic topic = outEvent.getTopic();
-						 	out.println(indent(2) + "statemachine.getSCI" + outEvent.getInterface() + "().getListeners().add(new SCI" + outEvent.getInterface() + "Listener() {");
-						 	out.println("				public void on" + outEvent.getName() + "Raised() {\r\n" + 
+						 	if (firstIteration) {
+						 		out.println(indent(2) + "statemachine.getSCI" + outEvent.getInterface() + "().getListeners().add(new SCI" + outEvent.getInterface() + "Listener() {");
+						 		firstIteration = false;
+						 	}
+						 	out.println("				public void on" + capitalizeFirstLetter(outEvent.getName()) + "Raised() {\r\n" + 
 						 			"					String topic = \"" + topic.getName() + "\";\r\n" + 
 						 			"					String content = \"" + outEvent.getMessage().getContent() + "\";\r\n" + 
 						 			"					MqttMessage message = new MqttMessage(content.getBytes());\r\n" + 
@@ -110,8 +125,10 @@ public class MQTTGenerator {
 						 			"					} catch (MqttException e) {\r\n" + 
 						 			"						e.printStackTrace();\r\n" + 
 						 			"					}\r\n" + 
-						 			"				}");
-						 	out.println(indent(2) + "});");
+						 			"				}\n");
+						 	if (!outEventIterator.hasNext()) {
+						 		out.println(indent(2) + "});");
+						 	}
 					 }
         		}
         		out.println(
@@ -125,7 +142,7 @@ public class MQTTGenerator {
 				 for (Iterator<InEvent> inEventIterator = yakindu.getInEvents().iterator(); inEventIterator.hasNext();) {
 					 	InEvent inEvent = inEventIterator.next();
 				 		out.println("	public void " + inEvent.getName() + "() {\r\n" + 
-				 				"		statemachine.getSCI" + inEvent.getInterface() + "().raise" + inEvent.getName() + "();\r\n" + 
+				 				"		statemachine.getSCI" + inEvent.getInterface() + "().raise" + capitalizeFirstLetter(inEvent.getName()) + "();\r\n" + 
 				 				"		statemachine.runCycle();\r\n" + 
 				 				"	}");
 				 }
@@ -192,7 +209,7 @@ public class MQTTGenerator {
 				
 				Subscriber subscriber = runningInstance.getSubscriber();
 				if (subscriber != null) {
-					out.println("import org.eclipse.paho.client.mqttv3.MqttMessage;");
+					out.println("import org.eclipse.paho.client.mqttv3.MqttException;");
 				}
 				out.println("import org.eclipse.paho.client.mqttv3.persist.MemoryPersistence;\n");
 				out.println("public class " + smName + "Runner {\n");
@@ -200,8 +217,8 @@ public class MQTTGenerator {
 				if (subscriber != null) {
 					out.println(indent(2) + "int qos             = 2;");
 				}
-				out.println(indent(2) + "String broker       = \"" + broker + "\"");
-				out.println(indent(2) + "String clientId     = \"" + runningInstance.getClientId() + "\"");
+				out.println(indent(2) + "String broker       = \"" + broker + "\";");
+				out.println(indent(2) + "String clientId     = \"" + runningInstance.getClientId() + "\";");
 				out.println(indent(2) + "MemoryPersistence persistence = new MemoryPersistence();\n");
 				
 				int clientId = 1;
@@ -248,6 +265,10 @@ public class MQTTGenerator {
 			}
         }
         
+		public static String capitalizeFirstLetter(String input) {
+			return input.substring(0, 1).toUpperCase() + input.substring(1);
+		}
+		
         public static String indent(int count) {
         	String result = "";
         	for (int i=0; i<count; i++) {

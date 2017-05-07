@@ -14,6 +14,8 @@
     <semanticResources>platform:/plugin/org.yakindu.sct.generator.core/library/CoreFeatureTypeLibrary.xmi</semanticResources>
     <semanticResources>types</semanticResources>
     <semanticResources>CPS2.xmi</semanticResources>
+    <semanticResources>../bin/MovementDetector.sct</semanticResources>
+    <semanticResources>../bin/ControlPanel.sct</semanticResources>
     <ownedViews xmi:type="viewpoint:DView" xmi:id="_kIIpcApqEeeUvtoGVMgeqg">
       <viewpoint xmi:type="description:Viewpoint" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']"/>
       <ownedRepresentationDescriptors xmi:type="viewpoint:DRepresentationDescriptor" xmi:id="_lp_dwApqEeeUvtoGVMgeqg" name="Allocation class diagram" representation="_lqAE0ApqEeeUvtoGVMgeqg">
