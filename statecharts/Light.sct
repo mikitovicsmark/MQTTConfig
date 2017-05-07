@@ -31,7 +31,7 @@
       </vertices>
       <vertices xsi:type="sgraph:Choice" xmi:id="_qjE2YB_QEeevX6ZO0nRwcA" incomingTransitions="_rdbl0B_QEeevX6ZO0nRwcA">
         <outgoingTransitions xmi:id="_vb8CwB_QEeevX6ZO0nRwcA" specification="default" target="_0WOITR_MEeevX6ZO0nRwcA"/>
-        <outgoingTransitions xmi:id="_yfWJYB_QEeevX6ZO0nRwcA" specification="[!Controls.movement]" target="_yBcCMR_MEeevX6ZO0nRwcA"/>
+        <outgoingTransitions xmi:id="_yfWJYB_QEeevX6ZO0nRwcA" specification="[!Controls.movement || !Controls.darkness]" target="_yBcCMR_MEeevX6ZO0nRwcA"/>
       </vertices>
     </regions>
   </sgraph:Statechart>
@@ -221,7 +221,7 @@
     <edges xmi:id="_yfWJYR_QEeevX6ZO0nRwcA" type="Transition" element="_yfWJYB_QEeevX6ZO0nRwcA" source="_qjE2YR_QEeevX6ZO0nRwcA" target="_yBcCNB_MEeevX6ZO0nRwcA">
       <children xsi:type="notation:DecorationNode" xmi:id="_yfWJZR_QEeevX6ZO0nRwcA" type="TransitionExpression">
         <styles xsi:type="notation:ShapeStyle" xmi:id="_yfWJZh_QEeevX6ZO0nRwcA"/>
-        <layoutConstraint xsi:type="notation:Location" xmi:id="_yfWJZx_QEeevX6ZO0nRwcA" x="-2" y="33"/>
+        <layoutConstraint xsi:type="notation:Location" xmi:id="_yfWJZx_QEeevX6ZO0nRwcA" x="-80" y="62"/>
       </children>
       <styles xsi:type="notation:ConnectorStyle" xmi:id="_yfWJYh_QEeevX6ZO0nRwcA" lineColor="4210752"/>
       <styles xsi:type="notation:FontStyle" xmi:id="_yfWJZB_QEeevX6ZO0nRwcA" fontName="Verdana"/>

@@ -12,7 +12,7 @@
           </vertices>
           <vertices xsi:type="sgraph:State" xmi:id="__GkLsB4nEee19qwz3Pp6ZQ" name="On" incomingTransitions="_EChIUB4oEee19qwz3Pp6ZQ">
             <outgoingTransitions xmi:id="_EdS_0B4oEee19qwz3Pp6ZQ" specification="Controls.switchSprinkler / &#xD;&#xA;raise Publisher.switchSprinklerOff" target="_53b0YB4nEee19qwz3Pp6ZQ"/>
-            <outgoingTransitions xmi:id="_HFLh4CzrEeevV4dHbgov5Q" specification="after 18000 s /&#xD;&#xA;raise Publisher.switchSprinklerOff" target="_53b0YB4nEee19qwz3Pp6ZQ"/>
+            <outgoingTransitions xmi:id="_HFLh4CzrEeevV4dHbgov5Q" specification="after 5 s /&#xD;&#xA;raise Publisher.switchSprinklerOff" target="_53b0YB4nEee19qwz3Pp6ZQ"/>
           </vertices>
           <vertices xsi:type="sgraph:Entry" xmi:id="_AIuzUB4oEee19qwz3Pp6ZQ">
             <outgoingTransitions xmi:id="_A1SXUB4oEee19qwz3Pp6ZQ" specification="" target="_53b0YB4nEee19qwz3Pp6ZQ"/>
