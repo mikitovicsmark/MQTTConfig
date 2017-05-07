@@ -1,3 +1,4 @@
+package generator;
 import java.io.BufferedOutputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -156,8 +157,10 @@ public class MQTTGenerator {
         				indent(1) + "}\r\n" + 
         				"\r\n" + 
         				indent(1) + "public void messageArrived(String topic, MqttMessage msg) throws Exception {\r\n" + 
-        				indent(2) + "System.out.println(\"Got message: Topic: \" + topic + \"\\n\\tMessage: \" + new String(msg.getPayload()));\r\n"
+        				indent(2) + "String message = new String(msg.getPayload());\n" +
+        				indent(2) + "System.out.println(\"Got message: Topic: \" + topic + \"\\n\\tMessage: \" + message);\r\n"
         				);
+        				
         		
 				 for (Iterator<InEvent> inEventIterator = yakindu.getInEvents().iterator(); inEventIterator.hasNext();) {
 					 	InEvent inEvent = inEventIterator.next();
@@ -165,7 +168,7 @@ public class MQTTGenerator {
 						 	String msg = inEvent.getMessage().getContent();
 						 	String topic = inEvent.getTopic().getName();
 						 	if (topic != null && msg != null) {
-					 		out.println(indent(2) + "if(msg.toString() == \"" + msg + "\" && topic == \"" + topic + "\") {\n" +
+					 		out.println(indent(2) + "if(message.equals(\"" + msg + "\") && topic.equals(\"" + topic + "\")) {\n" +
 					 				indent(3) + inEvent.getName() + "();\n" +
 					 				indent(2) + "}");
 						 	}
